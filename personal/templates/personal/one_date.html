@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container">
+    <a href="{% url 'personal:one_people' %}">个人中心</a>
+
+<div id="left" class="container col-md-11" style="height: 500px; padding-top: 50px">
+
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">{{request.user.username}}</span>
+      <input type="text" class="form-control" placeholder="不可修改" disabled="disabled" aria-describedby="basic-addon1">
+    </div>
+
+    <br><br>
+
+    <!--<div class="input-group">-->
+      <!--<span class="input-group-addon" id="basic-addon2">密码</span>-->
+      <!--<input type="text" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">-->
+    <!--</div>-->
+
+    <!--<br><br>-->
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{msg}}
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3">性别</span>
+          <input type="text" name="gender" class="form-control" placeholder="{{request.user.users.gender}}" aria-describedby="basic-addon1">
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon4">邮箱</span>
+          <input type="text" name="email" class="form-control" placeholder="{{user.email}}" aria-describedby="basic-addon1">
+        </div>
+
+        <br><br>
+
+        <input type="submit" class="btn btn-primary btn-block">
+    </form>
+
+</div>
+<div class="col-md-1 text-center" style="margin-top: 150px">
+    <a id="image" href="javascript:void(0)">
+        <img src="{% static 'personal/images/箭头右.png' %}">
+    </a>
+</div>
+</div>
+<script>
+    $(function () {
+        $('#left').animate({'left':'10px'},function () {
+
+    });
+
+        $('#image').click(function () {
+            $('#left').animate({'left':'-1500px'},function () {
+                window.location.href="{% url 'personal:one_date_head' %}";
+            });
+        })
+    })
+</script>
+
+{% endblock %}
+</body>
+</html>

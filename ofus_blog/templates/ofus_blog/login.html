@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<div class="container" style="height: 500px; padding-top: 100px">
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>{{msg}}</p>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">账号</span>
+          <input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+        </div>
+        <br><br>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">密码</span>
+          <input type="text" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+        </div>
+        <br><br>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3"><img id="break_code" onclick="changeCode()" src="/code/"></span>
+          <input type="text" name="code" class="form-control" placeholder="code" aria-describedby="basic-addon1">
+        </div>
+        <br><br>
+        <input type="submit" class="btn btn-primary btn-block">
+    </form>
+</div>
+<script>
+
+    function changeCode() {
+        document.getElementById('break_code').src = "/code?id=" + Math.random()
+    }
+
+
+    // $('#break_code').click(function () {
+    //     $.ajax({
+    //         url: '/code/',
+    //         method: 'POST',
+    //         data: {'csrfmiddlewaretoken':'{{ csrf_token }}'},
+    //         dataType: 'text',
+    //         success: function (date) {
+    //             console.log(date);
+    //             $('#break_code').attr('src','data:image/jpg;base64,'+date)
+    //         },
+    //         error: function () {
+    //             console.log('ajax错误')
+    //         }
+    //     })
+    // })
+
+
+</script>
+{% endblock %}
+
+</body>
+</html>

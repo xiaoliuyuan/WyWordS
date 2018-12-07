@@ -1,0 +1,175 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.yy{
+    background-color: white;
+    /*阴影-可能兼容性问题*/
+    box-shadow: 0 0 5px #888888;
+    border-radius: 5px;
+}
+
+.bg{
+    background-color: #f5f5f5;
+}
+
+.navbg{
+    background-color: white;
+    /*阴影-可能兼容性问题*/
+    box-shadow: 0 0 5px #888888;
+}
+
+/*.wd{*/
+    /*!*左边内容宽度*!*/
+    /*width: 20%;*/
+    /*padding-left: 0;*/
+    /*padding-right: 0;*/
+
+/*}*/
+
+.wd > div{
+    /*去除bs的左右边框*/
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/*------------------tab切换+样式修改------------------*/
+.nav-tab{
+    list-style: none;
+}
+
+.nav-tab li{
+    float: left;
+}
+
+.nav-tab li a{
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.nav-tab li a:focus{
+    border-bottom: solid 2px #00ccca;
+}
+
+/*table上部分一般不动*/
+
+.tab-left{
+
+}
+
+.tab-left a > img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.tab-right{
+
+}
+
+.tab-right ul{
+    list-style:none;
+    margin-left: 20px;
+}
+
+.tab-right ul li:nth-of-type(1){
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.tab-right ul li:nth-of-type(2){
+    font-size: 12px;
+    color: #99a2aa;
+}
+
+.tab-right-center{
+
+}
+
+.tab-right-center-top{
+
+}
+
+.tab-right-center-down{
+    border: solid 1px #ccc;
+    border-radius:5px;
+    overflow: hidden;
+    margin:5px 0;
+}
+
+.tab-right-center-down-left{
+    float: left;
+    width: 200px;
+    height: 127px;
+}
+
+.tab-right-center-down-right{
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.tab-right-center-down-right a{
+    display: block;
+    height: 107px;
+    text-decoration:none;
+}
+
+.tab-right-center-down-right a h4{
+    color:black;
+    font-weight: 500;
+}
+
+.tab-right-center-down-right a span{
+    font-size:12px;
+    color:#99a2aa;
+}
+
+.tab-right-center-down-right a:hover h4{
+    color:#0c79be;
+}
+
+/*阴影*/
+.tab-right-center-down:hover{
+    box-shadow: 0 0 10px #888888;
+    /*border-radius: 5px;*/
+}
+
+.tab-right-center-down:hover img{
+    /*background-color: black;*/
+    opacity: 0.5;
+}
+
+/*下*/
+.tab-right-down{
+
+}
+
+.tab-right-down span{
+    /*display: block;*/
+    /*float: ;*/
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+
+
+
+/*------------------tab切换+样式修改END------------------*/
+
+/*------------------最近访客------------------*/
+.recent{
+
+}
+
+.recent li img{
+    margin-right: 5px;
+}
+/*------------------最近访客END------------------*/
+
+/*------------------下部------------------*/
+.gg{
+    height: 100px;
+    background-color: #8f8f8f;
+}
+/*------------------下部END------------------*/

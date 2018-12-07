@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block css %}
+        <link rel="stylesheet" href='{% static "personal/editor.md/css/editormd.css" %}'>
+	    <script src='{% static "personal/editor.md/editormd.min.js" %}'></script>
+        <link rel="stylesheet" href="{% static 'personal/css/app/send_article.css' %}">
+    {% endblock %}
+</head>
+<body>
+<!--nav-->
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid " style="padding:0;">
+    <div class="col-md-2 col-lg-2 left text-center" style="padding:0; overflow-y: auto;">
+        <div class="left-top">
+            <a href="{% url 'ofus_blog:index' %}">回首页</a>
+        </div>
+        <div class="left-ul text-left">
+            <ul id="ul">
+                <li><a id="create" value="新建文集" href="javascript:void(0)">新建文集</a></li>
+                <li id="llli">
+                    <input id="article-type" name="name" type="text">
+                    <button id="article-type-button">提交</button>
+                </li>
+                {% for type in article_type %}
+                <li><a class="click" value="{{type.type_title}}" href="javascript:void(0)">{{type.type_title}}</a></li>
+                {% empty %}
+                <li><a class="" value="木有" href="javascript:void(0)">木有</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="left-down text-left">
+            <a href="">
+                设置
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-2 in" style="padding:0;">
+
+            <div style="height:100vh; overflow-y: scroll;">
+                <div class="in-top">
+                    <a href="">新建文章</a>
+                </div>
+                <ul class="in-ul">
+                    <!--<li>-->
+                        <!--<img src="123">-->
+
+                        <!--<a href=""><span>2018-17-27</span></a>-->
+                        <!--<a href=""><img src="124"></a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+
+    </div>
+
+    <div class="col-md-8" style="padding:0; margin: 0;">
+        <form action='' method='POST'>
+        {% csrf_token %}
+            <!--<input type="submit">-->
+            <div class="text-center">
+                标题
+                <input type="text" name="title" class="title">
+                <input type="submit" class="btn btn-default">
+            </div>
+            <div id="my-editormd" >
+                <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none"></textarea>
+                 <!--注意：name属性的值-->
+                <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
+                 <!--注意：如果查询到数据-->
+
+                <!--<textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" style="display: none;"></textarea>-->
+            </div>
+
+        </form>
+    </div>
+</div>
+    <script>
+		  $(function() {
+				editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+				width   : "100%",
+				height  : '89vh',
+				syncScrolling : "single",
+                watch:  false,
+				path    : "{% static 'personal/editor.md/lib/' %}",//注意2：你的路径
+                toolbarAutoFixed: false,
+				saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
+
+				/**上传图片相关配置如下*/
+				// imageUpload : true,
+				// imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+				// imageUploadURL : "",//注意你后端的上传图片服务地址
+			  });
+		  });
+
+          // 点击新建文集
+		  $(function () {
+
+		      $('#llli').hide();
+		      // 点击新建文章
+		      $('#create').click(function () {
+                  $('#llli').slideToggle('show')
+              });
+
+
+		      // 新建分类
+		      $('#article-type-button').click(function () {
+		          // 获取输入的分类名称
+                  var create_type = $('#article-type').val();
+                  $.ajax({
+                      url:'/personal/create_type/',
+                      method: 'POST',
+                      data:{'create_type': create_type, 'csrfmiddlewaretoken': '{{csrf_token}}'},
+                      dataType: 'json',
+                      success: function (date) {
+                          console.log(date);
+                          $("#ul").append("<li><a class=\"click\" value="+ date +" href=\"javascript:void(0)\">"+date+"</a></li>");
+                      }
+                  })
+              });
+
+
+		      // 请求点击分类文章中的
+		      $('.click').click(function () {
+		          // 用户点击的分类名
+		          var type = $(this).attr('value');
+		          // console.log(type);
+                  $.ajax({
+                      url:'/personal/article_inquire/',
+                      method: 'POST',
+                      data: {'type': type, 'csrfmiddlewaretoken': '{{csrf_token}}'},
+                      dataType: 'json',
+                      success: function (date) {
+                          // 先吧显示的文章删除
+                          $('.in-ul').empty();
+                          // 再添加文章
+                          $('.in-ul').append();
+                          // console.log(date)
+                          // 循环后台传来的列表
+                          $.each(date, function (k,v) {
+                              // 这是文章标题
+                              $(".in-ul").append("" +
+                                  "<li>\n" +
+                                  "<img src=\"123\">\n" +
+                                  "\n" +
+                                  "<a href=\"javascript:void(0)\"><span class='article_title'>"+v+"</span></a>\n" +
+                                  "<a href=\"\"><img src=\"124\"></a>\n" +
+                                  "</li>")
+                          });
+                            // $('.editormd-markdown-textarea').val("设么贵");
+                      }
+                  });
+
+              })
+          })
+    </script>
+{% endblock %}
+
+{% block under %}
+{% endblock %}
+</body>
+</html>

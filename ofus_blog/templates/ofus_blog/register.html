@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block css %}
+		<link rel="stylesheet" href="{% static 'ofus_blog/css/app/register.css' %}">
+    {% endblock %}
+
+</head>
+<body>
+{% block body %}
+<div class="container" style="height: 500px; padding-top: 100px">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">账号</span>
+          <input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon2">密码</span>
+          <input type="text" name="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon3">邮箱</span>
+          <input type="email" name="email" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+        </div>
+
+        <br><br>
+
+        <!--邮箱-->
+        <!--<div class="input-group">-->
+          <!--<span class="input-group-addon" id="basic-addon3">邮箱验证</span>-->
+          <!--<input type="text" name="email" class="form-control" placeholder="code" aria-describedby="basic-addon1">-->
+          <!--<span class="input-group-addon" id="basic-addon4"><a id="email" onclick="return false">发送邮件</a></span>-->
+        <!--</div>-->
+
+        <!--验证码-->
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon4"><img id="break_code" onclick="changeCode()" src="/code/"></span>
+          <input type="text" name="code" class="form-control" placeholder="code" aria-describedby="basic-addon1">
+        </div>
+        <br>
+        <p id="prompt" style="height: 20px; text-align: center;">{{msg}}</p>
+        <br>
+        <input type="submit" class="btn btn-primary btn-block">
+    </form>
+</div>
+<script>
+
+    function changeCode() {
+        document.getElementById('break_code').src = "/code?id=" + Math.random()
+    }
+    // $('#email').click(function () {
+    //     $.ajax({
+    //         url: '/email/',
+    //         method: 'POST',
+    //         data: {'csrfmiddlewaretoken':'{{ csrf_token }}'},
+    //         dataType: 'text',
+    //         success: function (date) {
+    //             console.log('邮件发送成功');
+    //             $('#prompt').html('发送成功')
+    //
+    //         },
+    //         error: function () {
+    //             console.log('邮件发送失败')
+    //         }
+    //     })
+
+    // })
+</script>
+{% endblock %}
+
+</body>
+</html>

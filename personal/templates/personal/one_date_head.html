@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block nav %}
+{% endblock %}
+
+{% block body %}
+<br>
+    <div class="container">
+    <a href="{% url 'personal:one_people' %}">个人中心</a>
+    <div class="col-md-1 text-center" style="margin-top: 150px">
+        <a id="image" href="javascript:void(0)">
+            <img src="{% static 'personal/images/箭头.png' %}">
+        </a>
+    </div>
+
+    <div id="left" class="col-md-10 container" style="height: 500px; padding-top: 50px; left: 500px">
+        <!--margin-left: 500px-->
+        {{msg}}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row text-center">
+              <div class="col-sm-6 col-md-12">
+                <div class="thumbnail">
+                    <a id="aaa" href="javascript:void(0)" >
+                        <img id="show" src="/{{users.header}}" style="height: 300px" alt="修改头像">
+                    </a>
+                    <input id="file" onchange="echo()"  name="head" type="file" style="opacity: 0">
+                  <div class="caption">
+                    <p><input id="open" type="submit" value="提交" class="btn btn-primary btn-block"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function () {
+         $('#left').animate({'left':'10px'},function () {
+
+    });
+
+        $('#image').click(function () {
+            $('#left').animate({'left':'800px'},function () {
+                window.location.href="{% url 'personal:one_date' %}";
+            })
+
+        });
+
+        $('#aaa').click(function () {
+            $('#file').click()
+        });
+
+    });
+
+    function echo () {
+      var r= new FileReader();
+      f=document.getElementById('file').files[0];
+
+      r.readAsDataURL(f);
+      r.onload=function (e) {
+        document.getElementById('show').src=this.result;
+      };
+        }
+
+
+</script>
+{% endblock %}
+</body>
+</html>

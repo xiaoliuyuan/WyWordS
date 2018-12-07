@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--cookie-->
+
+    <!--左-->
+	{% block left %}
+        <!--专题？-->
+        <!--<ul class="list-group yy">-->
+          <!--<li class="list-group-item"><b>二类</b></li> &lt;!&ndash;字体加粗？&ndash;&gt;-->
+          <!--<li class="list-group-item"><images src="./images/摄影.png">&nbsp;&nbsp;Python</li>-->
+          <!--<li class="list-group-item"><images src="./images/手绘板.png">&nbsp;&nbsp;WEB</li>-->
+          <!--<li class="list-group-item"><images src="./images/书.png">&nbsp;&nbsp;Django</li>-->
+          <!--<li class="list-group-item"><images src="./images/电脑.png">&nbsp;&nbsp;Database</li>-->
+          <!--&lt;!&ndash;<li class="list-group-item">更多热门专题...</li>&ndash;&gt;-->
+          <!--&lt;!&ndash;<li class="list-group-item">Vestibulum at eros</li>&ndash;&gt;-->
+        <!--</ul>-->
+    <!--音乐-->
+        <div class="panel panel-default yy">
+            <div class="panel-body">
+                音乐{#{request.user}#}
+            </div>
+        </div>
+	{% endblock %}
+
+
+</body>
+</html>

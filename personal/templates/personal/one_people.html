@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+    <!--不要的搜索框-->
+    {% block search %}
+    {% endblock %}
+<div class="container text-center">
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+          <img src="{% static 'personal/images/个人资料.png'  %}" alt="...">
+          <div class="caption">
+            <h3>个人资料</h3>
+            <p>详细个人信息的修改</p>
+            <p><a href="{% url 'personal:one_date' %}" class="btn btn-primary" role="button">OPEN</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+          <img src="{% static 'personal/images/编辑文章.png' %}" alt="...">
+          <div class="caption">
+            <h3>发表文章</h3>
+            <p>写文章</p>
+            <p><a href="{% url 'personal:send_article' %}" class="btn btn-primary" role="button">OPEN</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+          <img src="{% static 'personal/images/管理.png' %}" alt="...">
+          <div class="caption">
+            <h3>管理文章</h3>
+            <p>修改与删除</p>
+            <p><a href="#" class="btn btn-primary" role="button">OPEN</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+          <img src="{% static 'personal/images/空框.png' %}" alt="...">
+          <div class="caption">
+            <h3>预留</h3>
+            <p>...</p>
+            <p><a href="#" class="btn btn-primary" role="button">OPEN</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
